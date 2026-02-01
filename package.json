@@ -4,7 +4,9 @@
   "description": "A collection of frame-based tools for checking for page/journal issues, and correcting a few.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "verify": "node scripts/verify.js",
+    "prepack": "npm run verify",
+    "test": "npm run verify"
   },
   "keywords": [
     "wiki",
@@ -12,5 +14,8 @@
     "plugin"
   ],
   "author": "Paul Rodwell",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "wiki": "^0.39.1"
+  }
 }

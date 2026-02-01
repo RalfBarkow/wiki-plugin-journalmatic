@@ -1,0 +1,27 @@
+{
+  "title": "About Journalmatic Plugin",
+  "story": [
+    {
+      "type": "paragraph",
+      "id": "about-journalmatic",
+      "text": "Journalmatic provides frame-based tools for checking journal/page issues and correcting a few common problems. See [[Journal Tools]] to get started."
+    }
+  ],
+  "journal": [
+    {
+      "type": "create",
+      "item": {
+        "title": "About Journalmatic Plugin",
+        "story": [
+          {
+            "type": "paragraph",
+            "id": "about-journalmatic",
+            "text": "Journalmatic provides frame-based tools for checking journal/page issues and correcting a few common problems. See [[Journal Tools]] to get started."
+          }
+        ]
+      },
+      "date": 1769923200000,
+      "certificate": "from codex"
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 {
   "name": "Journalmatic",
   "title": "Journalmatic Plugin",
-  "pages": ["Journal Tools"]
+  "pages": ["About Journalmatic Plugin", "Journal Tools"]
 }

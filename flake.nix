@@ -12,7 +12,7 @@
         # --- Existing tooling -------------------------------------------------
         pack_install_app = pkgs.writeShellApplication {
           name = "pack_install";
-          runtimeInputs = [ pkgs.nodejs_20 pkgs.git pkgs.esbuild ];
+          runtimeInputs = [ pkgs.nodejs_22 pkgs.git pkgs.esbuild ];
           text = ''
             set -euo pipefail
 
@@ -38,7 +38,7 @@
 
         wiki_run_app = pkgs.writeShellApplication {
           name = "wiki_run";
-          runtimeInputs = [ pkgs.nodejs_20 ];
+          runtimeInputs = [ pkgs.nodejs_22 ];
           text = ''
             set -euo pipefail
 
@@ -82,7 +82,7 @@
         # --- Stylelint integration -------------------------------------------
         stylelint_init_app = pkgs.writeShellApplication {
           name = "stylelint_init";
-          runtimeInputs = [ pkgs.nodejs_20 ];
+          runtimeInputs = [ pkgs.nodejs_22 ];
           text = ''
             set -euo pipefail
             WIKI_PLUGIN_DIR="''\${WIKI_PLUGIN_DIR:-$PWD}"
@@ -133,7 +133,7 @@ EOF
         # Safe glob handling: split into Bash array, then expand.
         stylelint_run_app = pkgs.writeShellApplication {
           name = "stylelint_run";
-          runtimeInputs = [ pkgs.nodejs_20 ];
+          runtimeInputs = [ pkgs.nodejs_22 ];
           text = ''
             set -euo pipefail
             WIKI_PLUGIN_DIR="''\${WIKI_PLUGIN_DIR:-$PWD}"
@@ -148,7 +148,7 @@ EOF
 
         stylelint_fix_app = pkgs.writeShellApplication {
           name = "stylelint_fix";
-          runtimeInputs = [ pkgs.nodejs_20 ];
+          runtimeInputs = [ pkgs.nodejs_22 ];
           text = ''
             set -euo pipefail
             WIKI_PLUGIN_DIR="''\${WIKI_PLUGIN_DIR:-$PWD}"
@@ -179,7 +179,7 @@ EOF
       {
         devShells.default = pkgs.mkShell {
           packages = [
-            pkgs.nodejs_20
+            pkgs.nodejs_22
             pkgs.nodePackages.mocha
             pkgs.esbuild
             pkgs.git
@@ -194,6 +194,16 @@ EOF
             stylelint_watch_app
           ];
           shellHook = ''
+            echo "Local Test Farm quickstart:"
+            echo "  mkdir -p ~/workspace/wiki"
+            echo "  cd ~/workspace/wiki"
+            echo "  npm i wiki --install-strategy=shallow"
+            echo "  cd ~/workspace/wiki/node_modules/wiki"
+            echo "  node --trace-deprecation index.js --config ~/.wiki/config.json.safe --port 80"
+            echo "Install plugin into test wiki:"
+            echo "  cd ~/workspace/wiki/node_modules/wiki"
+            echo "  npm i \$(npm pack $PWD | tail -1)"
+
             export WIKI_PLUGIN_DIR="''\${WIKI_PLUGIN_DIR:-$PWD}"
             export WIKI_DIR="''\${WIKI_DIR:-$HOME/workspace/wiki/node_modules/wiki}"
             export WIKI_CONFIG="''\${WIKI_CONFIG:-$HOME/workspace/wiki/config.json.safe}"
